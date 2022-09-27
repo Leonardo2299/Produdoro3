@@ -17,4 +17,8 @@ public interface UsuarioAPI {
 	@GetMapping(value = "/{idUsuario}")
 	@ResponseStatus(code = HttpStatus.OK)
 	UsuarioCriadoResponse buscaUsuarioPorId(@PathVariable UUID idUsuario);
+
+	@PatchMapping(value = "/{idUsuario}/foco")
+	@ResponseStatus(code = HttpStatus.OK)
+	void mudaStatusParaFoco(@PathVariable UUID idUsuario);
 }
