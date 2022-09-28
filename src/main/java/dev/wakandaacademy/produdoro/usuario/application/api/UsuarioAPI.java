@@ -19,6 +19,6 @@ public interface UsuarioAPI {
 	UsuarioCriadoResponse buscaUsuarioPorId(@PathVariable UUID idUsuario);
 
 	@PatchMapping(value = "/{idUsuario}/foco")
-	@ResponseStatus(code = HttpStatus.OK)
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void mudaStatusParaFoco(@PathVariable UUID idUsuario);
 }
