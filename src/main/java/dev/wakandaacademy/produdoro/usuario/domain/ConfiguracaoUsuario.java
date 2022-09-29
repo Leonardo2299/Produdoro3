@@ -1,8 +1,11 @@
 package dev.wakandaacademy.produdoro.usuario.domain;
 
 import dev.wakandaacademy.produdoro.pomodoro.domain.ConfiguracaoPadrao;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class ConfiguracaoUsuario {
 	private Integer tempoMinutosFoco;
