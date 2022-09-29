@@ -50,5 +50,4 @@ public class Tarefa {
 	public void incrementaPomodor() {
 		this.contagemPomodoro+=1;
 	}
-	
 }
