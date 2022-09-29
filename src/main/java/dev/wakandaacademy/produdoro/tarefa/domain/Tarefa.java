@@ -46,5 +46,9 @@ public class Tarefa {
 		this.statusAtivacao = StatusAtivacaoTarefa.INATIVA;
 		this.contagemPomodoro = 1;
 	}
+
+	public void incrementaPomodor() {
+		this.contagemPomodoro+=1;
+	}
 	
 }
