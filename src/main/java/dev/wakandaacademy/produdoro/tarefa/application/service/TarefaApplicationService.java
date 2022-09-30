@@ -1,11 +1,18 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
+import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaListResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import dev.wakandaacademy.produdoro.usuario.application.repository.UsuarioRepository;
+import dev.wakandaacademy.produdoro.usuario.domain.Usuario;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.List;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class TarefaApplicationService implements TarefaService {
 
     private final TarefaRepository tarefaRepository;
+	private final UsuarioRepository usuarioRepository;
 
     @Override
     public TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest) {
@@ -22,4 +30,35 @@ public class TarefaApplicationService implements TarefaService {
         log.info("[finish] TarefaSpringMongoDBService - criaNovaTarefa");
         return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
     }
+
+	@Override
+	public List<TarefaListResponse> BuscarTodasTarefas(UUID idUsuario) {
+		log.info("[inicia] TarefaSpringMongoDBService - BuscarTodasTarefas");
+			Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+			List<Tarefa> listaDeTarefa = tarefaRepository.BuscaTarefas(usuario.getIdUsuario());
+			log.info("[finaliza] TarefaApplicationService - buscarTarefasPorIdUsuario");
+			return TarefaListResponse.converte(listaDeTarefa);
+		}
+
+	@Override
+	public List<TarefaListResponse> OrdenaTarefas(UUID idUsuario) {
+		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefas");
+		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+		List<Tarefa> listaDeTarefa = tarefaRepository.BuscaTarefaOrdenada(usuario.getIdUsuario());
+		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefas");
+		return TarefaListResponse.converte(listaDeTarefa);
+	}
+
+	@Override
+	public List<TarefaListResponse> OrdenaTarefasDesc(UUID idUsuario) {
+		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefasDesc");
+		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+		List<Tarefa> listaDeTarefa = tarefaRepository.BuscaTarefaOrdenadaDesc(usuario.getIdUsuario());
+		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefasDesc");
+		return TarefaListResponse.converte(listaDeTarefa);
+	}
+		
+	
+	
 }
+
