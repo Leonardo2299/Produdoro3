@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.wakandaacademy.produdoro.tarefa.application.service.TarefaService;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import dev.wakandaacademy.produdoro.usuario.application.api.UsuarioCriadoResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -13,7 +14,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaRestController implements TarefaAPI {
-	
+
 	private final TarefaService tarefaService;
 
 	public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
@@ -24,6 +25,7 @@ public class TarefaRestController implements TarefaAPI {
 
 	}
 
+
 	@Override
 	public void ativaTarefa(UUID idUsuario, UUID idTarefa) {
 		log.info("[inicia]  TarefaRestController - ativaTarefa ");
@@ -31,4 +33,17 @@ public class TarefaRestController implements TarefaAPI {
 		log.info("[finaliza]  TarefaRestController - ativaTarefa");
 
 	}
+
+
+	//APAGAR
+	@Override
+	public IdTarefaIdResponse pegarATarefaId(UUID idTarefa) {
+		IdTarefaIdResponse idTarefaIdResponse = tarefaService.buscaTarefaId(idTarefa);
+		return idTarefaIdResponse;
+	}
+
+
+
+
+
 }

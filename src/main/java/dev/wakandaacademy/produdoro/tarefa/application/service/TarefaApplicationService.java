@@ -1,5 +1,6 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
+import dev.wakandaacademy.produdoro.tarefa.application.api.IdTarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaApplicationService implements TarefaService {
-
+	private final UsuarioService usuarioService;
 	private final TarefaRepository tarefaRepository;
 
 	@Override
@@ -29,9 +30,25 @@ public class TarefaApplicationService implements TarefaService {
 
 	@Override
 	public void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa) {
-		log.info("[start] TarefaApplicationService - statusAtivacaoTarefa");
-		log.info("[finish] TarefaApplicationService - statusAtivacaoTarefa");
-
+		log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
+		usuarioService.buscaUsuarioPorId(idUsuario);
+		//APAGAR (USAR OUTRO)
+		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
+		tarefaRepository.inativaTarefa(idUsuario); 
+		tarefa.mudaParaAtiva();
+		tarefaRepository.salva(tarefa);
+		log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
 	}
+
+
+
+
+	//APAGAR
+	@Override
+	public IdTarefaIdResponse buscaTarefaId(UUID idTarefa) {
+		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
+		return new IdTarefaIdResponse(tarefa);
+	}
+
 
 }

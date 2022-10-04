@@ -8,5 +8,15 @@ public interface TarefaRepository {
 
     Tarefa salva(Tarefa tarefa);
 
+
+
+
+    void inativaTarefa(UUID idUsuario);
+
+    
+    
+    
+    //APAGAR
+    Tarefa getTarefaById(UUID idTarefa);
 	
 }
