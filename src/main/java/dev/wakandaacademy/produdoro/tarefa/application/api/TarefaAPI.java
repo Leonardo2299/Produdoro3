@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
-
 @RestController
 @RequestMapping("/v1/tarefa")
 public interface TarefaAPI {
@@ -23,10 +21,6 @@ public interface TarefaAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
-    
-    @GetMapping("/{idUsuario}")
-	@ResponseStatus(code = HttpStatus.OK)
-	List<TarefaListResponse> ListaTodosProdutos(@PathVariable UUID idUsuario);
     
     @GetMapping("/ordem-a-z/{idUsuario}")
    	@ResponseStatus(code = HttpStatus.ACCEPTED)

@@ -32,21 +32,12 @@ public class TarefaApplicationService implements TarefaService {
     }
 
 	@Override
-	public List<TarefaListResponse> BuscarTodasTarefas(UUID idUsuario) {
-		log.info("[inicia] TarefaSpringMongoDBService - BuscarTodasTarefas");
-			Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
-			List<Tarefa> listaDeTarefa = tarefaRepository.BuscaTarefas(usuario.getIdUsuario());
-			log.info("[finaliza] TarefaApplicationService - buscarTarefasPorIdUsuario");
-			return TarefaListResponse.converte(listaDeTarefa);
-		}
-
-	@Override
-	public List<TarefaListResponse> OrdenaTarefas(UUID idUsuario) {
+	public List<TarefaListResponse> OrdenaTarefasAsc(UUID idUsuario) {
 		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefas");
 		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
-		List<Tarefa> listaDeTarefa = tarefaRepository.BuscaTarefaOrdenada(usuario.getIdUsuario());
+		List<Tarefa> listaDeTarefas = tarefaRepository.BuscaTarefaOrdenadaAsc(usuario.getIdUsuario());
 		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefas");
-		return TarefaListResponse.converte(listaDeTarefa);
+		return TarefaListResponse.converte(listaDeTarefas);
 	}
 
 	@Override

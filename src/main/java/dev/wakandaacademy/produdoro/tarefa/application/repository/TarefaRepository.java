@@ -9,9 +9,7 @@ public interface TarefaRepository {
 
     Tarefa salva(Tarefa tarefa);
     
-	List<Tarefa> BuscaTarefas(UUID idUsuario);
-	
-	List<Tarefa> BuscaTarefaOrdenada(UUID idUsuario);
+	List<Tarefa> BuscaTarefaOrdenadaAsc(UUID idUsuario);
 
 	List<Tarefa> BuscaTarefaOrdenadaDesc(UUID idUsuario);
 	
