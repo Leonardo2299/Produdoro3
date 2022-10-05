@@ -25,7 +25,6 @@ public class TarefaRestController implements TarefaAPI {
 
 	}
 
-
 	@Override
 	public void ativaTarefa(UUID idUsuario, UUID idTarefa) {
 		log.info("[inicia]  TarefaRestController - ativaTarefa ");
@@ -33,17 +32,5 @@ public class TarefaRestController implements TarefaAPI {
 		log.info("[finaliza]  TarefaRestController - ativaTarefa");
 
 	}
-
-
-	//APAGAR
-	@Override
-	public IdTarefaIdResponse pegarATarefaId(UUID idTarefa) {
-		IdTarefaIdResponse idTarefaIdResponse = tarefaService.buscaTarefaId(idTarefa);
-		return idTarefaIdResponse;
-	}
-
-
-
-
 
 }

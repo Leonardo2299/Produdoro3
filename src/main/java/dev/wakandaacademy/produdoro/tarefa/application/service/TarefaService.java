@@ -11,8 +11,4 @@ public interface TarefaService {
     TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest);
 	void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa);
 
-
-
-    //APAGAR
-    IdTarefaIdResponse buscaTarefaId(UUID idTarefa);
 }

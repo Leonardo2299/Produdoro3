@@ -33,22 +33,13 @@ public class TarefaApplicationService implements TarefaService {
 		log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
 		usuarioService.buscaUsuarioPorId(idUsuario);
 		//APAGAR (USAR OUTRO)
-		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
-		tarefaRepository.inativaTarefa(idUsuario); 
-		tarefa.mudaParaAtiva();
-		tarefaRepository.salva(tarefa);
+////		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
+//		tarefaRepository.inativaTarefa(idUsuario);
+//		tarefa.mudaParaAtiva();
+//		tarefaRepository.salva(tarefa);
 		log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
 	}
 
-
-
-
-	//APAGAR
-	@Override
-	public IdTarefaIdResponse buscaTarefaId(UUID idTarefa) {
-		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
-		return new IdTarefaIdResponse(tarefa);
-	}
 
 
 }

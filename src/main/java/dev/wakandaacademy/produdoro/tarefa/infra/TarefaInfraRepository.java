@@ -36,15 +36,6 @@ public class TarefaInfraRepository implements TarefaRepository {
 		return tarefa;
 	}
 
-	// APAGAR
-	@Override
-	public Tarefa getTarefaById(UUID idTarefa) {
-		log.info("[INICIA] TarefaInfraRepository - getTarefaById");
-		Tarefa tarefa = tarefaSpringMongoDBRepository.findByIdTarefa(idTarefa);
-		log.info("[FINALIZA] TarefaInfraRepository - getTarefaById");
-		return tarefa;
-	}
-
 	@Override
 	public void inativaTarefa(UUID idUsuario) {
 		log.info("[inicia] TarefaInfraRepository - inativaTarefa");

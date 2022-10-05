@@ -9,7 +9,4 @@ import java.util.UUID;
 public interface TarefaSpringMongoDBRepository extends MongoRepository<Tarefa, UUID> {
 
 
-
-    //APAGAR
-    Tarefa findByIdTarefa(UUID idTarefa);
 }

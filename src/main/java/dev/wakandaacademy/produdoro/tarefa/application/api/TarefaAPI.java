@@ -17,15 +17,8 @@ public interface TarefaAPI {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
 
-
 	@PostMapping("/{idTarefa}/status")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	void ativaTarefa(@RequestParam UUID idUsuario, @PathVariable UUID idTarefa);
 
-
-
-//APAGAR
-	@GetMapping(value = "/{idTarefa}")
-	@ResponseStatus(code = HttpStatus.OK)
-	IdTarefaIdResponse pegarATarefaId(@PathVariable UUID idTarefa);
 }
