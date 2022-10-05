@@ -30,7 +30,7 @@ public class TarefaApplicationService implements TarefaService {
 	@Override
 	public void editaTarefa(UUID idTarefa, TarefaModificadaRequest tarefaModificadaRequest) {
 		log.info("[start] TarefaSpringMongoDBService - editaTarefa");
-		
+		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
 		log.info("[finish] TarefaSpringMongoDBService - editaTarefa");
 		
 	}

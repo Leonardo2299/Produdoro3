@@ -4,7 +4,11 @@ import dev.wakandaacademy.produdoro.handler.APIException;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.var;
 import lombok.extern.log4j.Log4j2;
+
+import java.util.UUID;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
@@ -26,4 +30,13 @@ public class TarefaInfraRepository implements TarefaRepository {
         log.info("[finaliza] TarefaInfraRepository - salva");
         return tarefa;
     }
+
+	@Override
+	public Tarefa buscaTarefaPorId(UUID idTarefa) {
+		log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+		var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() -> 
+			APIException.build( HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+		log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
+		return tarefa;
+	}
 }
