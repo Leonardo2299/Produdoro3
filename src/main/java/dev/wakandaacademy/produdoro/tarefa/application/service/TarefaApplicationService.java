@@ -1,10 +1,8 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
 import java.util.UUID;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
 import dev.wakandaacademy.produdoro.handler.APIException;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
@@ -33,9 +31,7 @@ public class TarefaApplicationService implements TarefaService {
     	log.info("[inicia] TarefaService - detalhaTarefa");
         Tarefa tarefa =
                 tarefaRepository.buscaTarefaPorId(idTarefa).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND, "Tarefa não encontrada!"));
-                        
         log.info("[finaliza] TarefaService - detalhaTarefa");
         return tarefa;
     }
-	
 }
