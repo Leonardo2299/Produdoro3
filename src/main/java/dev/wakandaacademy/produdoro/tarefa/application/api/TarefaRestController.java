@@ -27,6 +27,7 @@ public class TarefaRestController implements TarefaAPI {
 	@Override
 	public void patchEditaTarefa(UUID idTarefa,  TarefaModificadaRequest tarefaModificadaRequest) {
 		log.info("[inicia]  TarefaRestController - patchEditaTarefa  ");
+		tarefaService.editaTarefa(idTarefa,tarefaModificadaRequest);
 		log.info("[finaliza]  TarefaRestController - patchEditaTarefa  ");
 	}
 }
