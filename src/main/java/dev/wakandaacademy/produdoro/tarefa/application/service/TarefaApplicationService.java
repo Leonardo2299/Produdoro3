@@ -31,6 +31,8 @@ public class TarefaApplicationService implements TarefaService {
 	public void editaTarefa(UUID idTarefa, TarefaModificadaRequest tarefaModificadaRequest) {
 		log.info("[start] TarefaSpringMongoDBService - editaTarefa");
 		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+		tarefa.editada(tarefaModificadaRequest);
+		tarefaRepository.salva(tarefa);
 		log.info("[finish] TarefaSpringMongoDBService - editaTarefa");
 		
 	}
