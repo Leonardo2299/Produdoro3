@@ -33,4 +33,12 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - buscaUsuarioPorId");
 		return buscaUsuario;
 	}
+	
+//	@Override
+	//public List<ClienteListResponse> getTodosClientes() {
+	//	log.info("[inicia] UsuarioController - getTodosUsuarios");
+		//List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
+	//	log.info("[finaliza] UsuarioController - getTodosUsuarios");
+		//return clientes;
+	//}
 }
