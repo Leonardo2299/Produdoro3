@@ -1,6 +1,5 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
-import dev.wakandaacademy.produdoro.tarefa.application.api.IdTarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
@@ -35,7 +34,7 @@ public class TarefaApplicationService implements TarefaService {
 		//APAGAR (USAR OUTRO)
 ////		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
 //		tarefaRepository.inativaTarefa(idUsuario);
-//		tarefa.mudaParaAtiva();
+		//tarefa.mudaParaAtiva();
 //		tarefaRepository.salva(tarefa);
 		log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
 	}

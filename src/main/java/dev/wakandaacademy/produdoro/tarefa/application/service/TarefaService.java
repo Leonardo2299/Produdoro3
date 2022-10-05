@@ -2,7 +2,6 @@ package dev.wakandaacademy.produdoro.tarefa.application.service;
 
 import java.util.UUID;
 
-import dev.wakandaacademy.produdoro.tarefa.application.api.IdTarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 

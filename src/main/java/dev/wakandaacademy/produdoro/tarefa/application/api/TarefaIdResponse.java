@@ -10,6 +10,5 @@ import lombok.Value;
 @Value
 @Builder
 public class TarefaIdResponse {
-
 	private UUID idTarefa;
 }
