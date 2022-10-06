@@ -1,5 +1,9 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaModificadaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
@@ -7,10 +11,6 @@ import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaReposito
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
@@ -34,6 +34,5 @@ public class TarefaApplicationService implements TarefaService {
 		tarefa.editada(tarefaModificadaRequest);
 		tarefaRepository.salva(tarefa);
 		log.info("[finish] TarefaSpringMongoDBService - editaTarefa");
-		
 	}
 }

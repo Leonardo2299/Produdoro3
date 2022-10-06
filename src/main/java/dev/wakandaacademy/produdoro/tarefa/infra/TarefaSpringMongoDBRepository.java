@@ -1,9 +1,10 @@
 package dev.wakandaacademy.produdoro.tarefa.infra;
 
-import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import java.util.UUID;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import java.util.UUID;
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 
 public interface TarefaSpringMongoDBRepository extends MongoRepository<Tarefa, UUID> {
 }
