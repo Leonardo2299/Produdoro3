@@ -48,6 +48,8 @@ public class TarefaApplicationService implements TarefaService {
 		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefasDesc");
 		return TarefaListResponse.converte(listaDeTarefa);
 	}
+
+	
 		
 	
 	
