@@ -25,6 +25,7 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - postNovoUsuario");
 		return usuarioCriado;
 	}
+	
 	@Override
 	public UsuarioCriadoResponse buscaUsuarioPorId(UUID idUsuario) {
 		log.info("[start] UsuarioController - buscaUsuarioPorId");
@@ -33,4 +34,11 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - buscaUsuarioPorId");
 		return buscaUsuario;
 	}
+	@Override
+	public void AlteraStatusPausaCurta(UUID idUsuario) {
+		log.info("[start] UsuarioController - AlteraStatusPausaCurta");
+		usuarioAppplicationService.AlteraStatusPausaCurta(idUsuario);
+		log.info("[finish] UsuarioController - AlteraStatusPausaCurta");
+	}
+	
 }
