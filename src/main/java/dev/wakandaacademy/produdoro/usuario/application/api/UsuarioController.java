@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
-
 import dev.wakandaacademy.produdoro.usuario.application.service.UsuarioApplicationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -33,12 +32,4 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - buscaUsuarioPorId");
 		return buscaUsuario;
 	}
-	
-//	@Override
-	//public List<ClienteListResponse> getTodosClientes() {
-	//	log.info("[inicia] UsuarioController - getTodosUsuarios");
-		//List<ClienteListResponse> clientes = clienteService.buscaTodosClientes();
-	//	log.info("[finaliza] UsuarioController - getTodosUsuarios");
-		//return clientes;
-	//}
 }
