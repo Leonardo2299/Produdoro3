@@ -21,7 +21,7 @@ public interface TarefaAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
 
-    @GetMapping("/detalha/{idTarefa}")
+    @GetMapping("/{idTarefa}")
 	@ResponseStatus(code = HttpStatus.OK)
 	TarefaDetalhadoResponse detalhaTarefa(@PathVariable UUID idTarefa);
 }
