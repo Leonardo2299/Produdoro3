@@ -8,5 +8,6 @@ public interface TarefaRepository {
 
     Tarefa salva(Tarefa tarefa);
 
-	Tarefa buscaTarefaPorID(UUID idTarefa);
+	Tarefa buscaTarefaPorID(UUID idTarefa, UUID usuario);
+	
 }

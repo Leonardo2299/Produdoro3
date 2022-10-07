@@ -30,4 +30,9 @@ public class UsuarioRepositoryMongoDB implements UsuarioRepository {
 		log.info("[finaliza] UsuarioMongoSpringRepository - buscaUsuarioPorId");
 		return usuario;
 	}
+
+	@Override
+	public Usuario buscaUsuarioPorEmail(String email) {
+		return usuarioMongoRepository.findByEmail(email);
+	}
 }

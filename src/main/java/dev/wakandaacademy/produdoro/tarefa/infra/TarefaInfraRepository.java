@@ -1,16 +1,16 @@
 package dev.wakandaacademy.produdoro.tarefa.infra;
 
-import dev.wakandaacademy.produdoro.handler.APIException;
-import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
-import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-
 import java.util.UUID;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+
+import dev.wakandaacademy.produdoro.handler.APIException;
+import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Repository
 @Log4j2
@@ -31,10 +31,12 @@ public class TarefaInfraRepository implements TarefaRepository {
     }
 
 	@Override
-	public Tarefa buscaTarefaPorID(UUID idTarefa) {
-		Tarefa tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND , "Tarefa não encontrado"));;
+	public Tarefa buscaTarefaPorID(UUID idTarefa, UUID usuario) {
+		Tarefa tarefa = tarefaSpringMongoDBRepository.findByIdTarefaAndIdUsuario(idTarefa, usuario).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND , "Tarefa não encontrado"));;
 		tarefa.incrementaPomodor();
 		tarefaSpringMongoDBRepository.save(tarefa);
 		return tarefa;
 	}
+
+	
 }

@@ -22,4 +22,5 @@ public class TarefaApplicationService implements TarefaService {
         log.info("[finish] TarefaSpringMongoDBService - criaNovaTarefa");
         return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
     }
+    
 }

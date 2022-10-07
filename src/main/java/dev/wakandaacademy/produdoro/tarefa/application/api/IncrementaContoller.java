@@ -16,10 +16,11 @@ public class IncrementaContoller implements IncrementaAPI {
 	private final IncrementaService incrementaService;
 	
 	@Override
-	public void incrementaPomodoro(UUID idTarefa) {
+	public void incrementaPomodoro(UUID idTarefa, String token) {
 		log.info("[Inicio] - IncrementaContoller - incrementaPomodoro");
-		incrementaService.alteraCliente(idTarefa);
+		incrementaService.alteraPomodoro(idTarefa, token);
 		log.info("[Fim] - IncrementaContoller - incrementaPomodoro");
 	}
 
+	
 }
