@@ -15,7 +15,7 @@ import lombok.extern.log4j.Log4j2;
 public class TarefaRestController implements TarefaAPI {
 
     private final TarefaService tarefaService;
-    
+
     public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
         log.info("[inicia]  TarefaRestController - postNovaTarefa  ");
         TarefaIdResponse tarefaCriada = tarefaService.criaNovaTarefa(tarefaRequest);

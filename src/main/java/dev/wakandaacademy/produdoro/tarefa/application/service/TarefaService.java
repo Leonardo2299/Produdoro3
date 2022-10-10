@@ -7,6 +7,7 @@ import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 
 public interface TarefaService {
-	TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest);
-	Tarefa detalhaTarefa(UUID idTarefa);
+    TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest);
+
+    Tarefa detalhaTarefa(UUID idTarefa);
 }
