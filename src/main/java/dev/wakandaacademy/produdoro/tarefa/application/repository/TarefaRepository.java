@@ -1,10 +1,11 @@
 package dev.wakandaacademy.produdoro.tarefa.application.repository;
 
-import java.util.UUID;
-
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+
+import java.util.UUID;
 
 public interface TarefaRepository {
     Tarefa salva(Tarefa tarefa);
-	Tarefa buscaTarefaPorId(UUID idTarefa);
+
+    Tarefa buscaTarefaPorId(UUID idTarefa);
 }
