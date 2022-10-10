@@ -9,6 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 @Log4j2
 @RequiredArgsConstructor
@@ -24,6 +26,15 @@ public class TarefaInfraRepository implements TarefaRepository {
             throw APIException.build(HttpStatus.BAD_REQUEST, "Tarefa já cadastrada", e);
         }
         log.info("[finaliza] TarefaInfraRepository - salva");
+        return tarefa;
+    }
+
+    @Override
+    public Tarefa buscaTarefaPorId(UUID idTarefa) {
+        log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+        var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() ->
+                APIException.build(HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+        log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
         return tarefa;
     }
 }
