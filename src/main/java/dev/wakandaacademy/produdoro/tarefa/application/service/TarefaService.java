@@ -14,7 +14,5 @@ public interface TarefaService {
 	List<TarefaListResponse> OrdenaTarefasAsc(UUID idUsuario);
 
 	List<TarefaListResponse> OrdenaTarefasDesc(UUID idUsuario);
-
-	
 	
 }
