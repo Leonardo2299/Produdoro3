@@ -17,25 +17,25 @@ public class TarefaRestController implements TarefaAPI {
     private final TarefaService tarefaService;
 
     public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
-        log.info("[inicia]  TarefaRestController - postNovaTarefa  ");
+        log.info("[inicia] TarefaRestController - postNovaTarefa");
         TarefaIdResponse tarefaCriada = tarefaService.criaNovaTarefa(tarefaRequest);
-        log.info("[finaliza]  TarefaRestController - postNovaTarefa");
+        log.info("[finaliza] TarefaRestController - postNovaTarefa");
         return tarefaCriada;
     }
 
 	@Override
 	public List<TarefaListResponse> ListaTarefasOrdenadasAsc(UUID idUsuario) {
-		log.info("[inicia]  TarefaRestController - ListaTarefasOrdenadasAsc  ");
-		List<TarefaListResponse> tarefasOrdenadas = tarefaService.OrdenaTarefasAsc(idUsuario);
-		log.info("[finaliza]  TarefaRestController - ListaTarefasOrdenadasAsc  ");
+		log.info("[inicia] TarefaRestController - ListaTarefasOrdenadasAsc");
+		List<TarefaListResponse> tarefasOrdenadas = tarefaService.ordenaTarefasAsc(idUsuario);
+		log.info("[finaliza] TarefaRestController - ListaTarefasOrdenadasAsc  ");
 		return tarefasOrdenadas;
 	}
 
 	@Override
 	public List<TarefaListResponse> ListaTarefasOrdenadasDesc(UUID idUsuario) {
-		log.info("[inicia]  TarefaRestController - ListaTarefasOrdenadasDesc  ");
-		List<TarefaListResponse> tarefasOrdenadas = tarefaService.OrdenaTarefasDesc(idUsuario);
-		log.info("[finaliza]  TarefaRestController - ListaTarefasOrdenadasDesc  ");
+		log.info("[inicia] TarefaRestController - ListaTarefasOrdenadasDesc");
+		List<TarefaListResponse> tarefasOrdenadas = tarefaService.ordenaTarefasDesc(idUsuario);
+		log.info("[finaliza] TarefaRestController - ListaTarefasOrdenadasDesc");
 		return tarefasOrdenadas;
 	}
 

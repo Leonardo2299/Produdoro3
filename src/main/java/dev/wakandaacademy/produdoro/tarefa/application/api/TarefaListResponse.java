@@ -8,21 +8,15 @@ import lombok.Value;
 
 @Value
 public class TarefaListResponse {
-	
-	   private String descricao;
-	    
-		public static List<TarefaListResponse> converte(List<Tarefa> listaTarefas) {
-			
-			return listaTarefas.stream()
-					.map(t -> new TarefaListResponse(t))
-					.collect(Collectors.toList());
-		}
 
+	private String descricao;
 
-		public TarefaListResponse(Tarefa t) {
-			this.descricao = t.getDescricao();
-		}
-		
+	public static List<TarefaListResponse> converte(List<Tarefa> listaTarefas) {
 
+		return listaTarefas.stream().map(t -> new TarefaListResponse(t)).collect(Collectors.toList());
+	}
 
+	public TarefaListResponse(Tarefa t) {
+		this.descricao = t.getDescricao();
+	}
 }

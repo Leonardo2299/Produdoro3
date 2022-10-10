@@ -18,22 +18,22 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class TarefaInfraRepository implements TarefaRepository {
 
-    private final TarefaSpringMongoDBRepository tarefaSpringMongoDBRepository;
-    
-    @Override
-    public Tarefa salva(Tarefa tarefa) {
-        try {
-            tarefaSpringMongoDBRepository.save(tarefa);
-        } catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Tarefa já cadastrada", e);
-        }
-        log.info("[finaliza] TarefaInfraRepository - salva");
-        return tarefa;
-    }
+	private final TarefaSpringMongoDBRepository tarefaSpringMongoDBRepository;
 
-	public List<Tarefa> BuscaTarefaOrdenadaAsc(UUID idUsuario){
+	@Override
+	public Tarefa salva(Tarefa tarefa) {
 		try {
-			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricao(idUsuario);			
+			tarefaSpringMongoDBRepository.save(tarefa);
+		} catch (DataIntegrityViolationException e) {
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Tarefa já cadastrada", e);
+		}
+		log.info("[finaliza] TarefaInfraRepository - salva");
+		return tarefa;
+	}
+
+	public List<Tarefa> buscaTarefaOrdenadaAsc(UUID idUsuario) {
+		try {
+			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricao(idUsuario);
 			return tarefas;
 		} catch (APIException e) {
 			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
@@ -41,15 +41,12 @@ public class TarefaInfraRepository implements TarefaRepository {
 	}
 
 	@Override
-	public List<Tarefa> BuscaTarefaOrdenadaDesc(UUID idUsuario) {
+	public List<Tarefa> buscaTarefaOrdenadaDesc(UUID idUsuario) {
 		try {
-			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricaoDesc(idUsuario);			
+			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricaoDesc(idUsuario);
 			return tarefas;
 		} catch (APIException e) {
 			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
 		}
 	}
-
-
-
 }
