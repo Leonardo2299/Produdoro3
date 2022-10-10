@@ -10,5 +10,5 @@ import java.util.UUID;
 public interface UsuarioApplicationService {
 	UsuarioCriadoResponse criaNovoUsuario(@Valid UsuarioNovoRequest usuarioNovo);
     UsuarioCriadoResponse buscaUsuarioPorId(UUID idUsuario);
-    void AlteraStatusPausaCurta(UUID idUsuario);
+    void alteraStatusPausaCurta(UUID idUsuario);
 }

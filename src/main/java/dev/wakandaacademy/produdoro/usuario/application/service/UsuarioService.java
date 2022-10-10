@@ -43,11 +43,11 @@ public class UsuarioService implements UsuarioApplicationService {
 	}
 	
 	@Override
-	public void AlteraStatusPausaCurta(UUID idUsuario) {
-		log.info("[inicia] TarefaSpringMongoDBService - AlteraStatusPausaCurta");
+	public void alteraStatusPausaCurta(UUID idUsuario) {
+		log.info("[inicia] UsuarioApplicationService - AlteraStatusPausaCurta");
 		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
-		usuario.AlteraStatusPausaCurta();
+		usuario.alteraStatusPausaCurta();
 		usuarioRepository.salva(usuario);
-		log.info("[finaliza] TarefaSpringMongoDBService - AlteraStatusPausaCurta");
+		log.info("[finaliza] UsuarioApplicationService - AlteraStatusPausaCurta");
 	}
 }

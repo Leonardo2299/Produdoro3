@@ -40,7 +40,7 @@ public class Usuario {
 		this.configuracao = new ConfiguracaoUsuario(configuracaoPadrao);
 	}
 
-	public void AlteraStatusPausaCurta() {
+	public void alteraStatusPausaCurta() {
 		this.status = status.PAUSA_CURTA;
 	}
 }

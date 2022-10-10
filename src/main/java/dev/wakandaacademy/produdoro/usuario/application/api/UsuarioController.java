@@ -35,9 +35,9 @@ public class UsuarioController implements UsuarioAPI {
 		return buscaUsuario;
 	}
 	@Override
-	public void AlteraStatusPausaCurta(UUID idUsuario) {
+	public void alteraStatusPausaCurta(UUID idUsuario) {
 		log.info("[start] UsuarioController - AlteraStatusPausaCurta");
-		usuarioAppplicationService.AlteraStatusPausaCurta(idUsuario);
+		usuarioAppplicationService.alteraStatusPausaCurta(idUsuario);
 		log.info("[finish] UsuarioController - AlteraStatusPausaCurta");
 	}
 	
