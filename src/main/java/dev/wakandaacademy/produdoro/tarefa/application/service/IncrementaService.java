@@ -6,6 +6,6 @@ import javax.validation.Valid;
 
 public interface IncrementaService {
 
-	void alteraPomodoro(@Valid UUID idTarefa,@Valid String jwt);
+	void alteraPomodoro(@Valid UUID idTarefa, @Valid String token);
 
 }

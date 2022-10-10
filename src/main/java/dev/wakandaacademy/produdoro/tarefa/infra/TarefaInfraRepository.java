@@ -17,26 +17,25 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class TarefaInfraRepository implements TarefaRepository {
 
-    private final TarefaSpringMongoDBRepository tarefaSpringMongoDBRepository;
-
-    @Override
-    public Tarefa salva(Tarefa tarefa) {
-        try {
-            tarefaSpringMongoDBRepository.save(tarefa);
-        } catch (DataIntegrityViolationException e) {
-            throw APIException.build(HttpStatus.BAD_REQUEST, "Tarefa já cadastrada", e);
-        }
-        log.info("[finaliza] TarefaInfraRepository - salva");
-        return tarefa;
-    }
+	private final TarefaSpringMongoDBRepository tarefaSpringMongoDBRepository;
 
 	@Override
-	public Tarefa buscaTarefaPorID(UUID idTarefa, UUID usuario) {
-		Tarefa tarefa = tarefaSpringMongoDBRepository.findByIdTarefaAndIdUsuario(idTarefa, usuario).orElseThrow(() -> APIException.build(HttpStatus.NOT_FOUND , "Tarefa não encontrado"));;
-		tarefa.incrementaPomodor();
-		tarefaSpringMongoDBRepository.save(tarefa);
+	public Tarefa salva(Tarefa tarefa) {
+		try {
+			tarefaSpringMongoDBRepository.save(tarefa);
+		} catch (DataIntegrityViolationException e) {
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Tarefa já cadastrada", e);
+		}
+		log.info("[finaliza] TarefaInfraRepository - salva");
 		return tarefa;
 	}
 
-	
+	@Override
+    public Tarefa buscaTarefaPorId(UUID idTarefa) {
+        log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+        var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() ->
+                APIException.build(HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+        log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
+        return tarefa;
+    }
 }

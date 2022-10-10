@@ -22,5 +22,4 @@ public class IncrementaContoller implements IncrementaAPI {
 		log.info("[Fim] - IncrementaContoller - incrementaPomodoro");
 	}
 
-	
 }
