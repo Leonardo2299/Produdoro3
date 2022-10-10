@@ -1,9 +1,10 @@
 package dev.wakandaacademy.produdoro.tarefa.infra;
 
-import java.util.UUID;
-
-
-
+import dev.wakandaacademy.produdoro.handler.APIException;
+import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -12,11 +13,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
-import dev.wakandaacademy.produdoro.handler.APIException;
-import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
-import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+import java.util.UUID;
 
 @Repository
 @Log4j2
@@ -37,6 +34,15 @@ public class TarefaInfraRepository implements TarefaRepository {
 	}
 
 	@Override
+	public Tarefa buscaTarefaPorId(UUID idTarefa) {
+		log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+		var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() ->
+				APIException.build(HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+		log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
+		return tarefa;
+	}
+
+	@Override
 	public void inativaTarefa(UUID idUsuario) {
 		log.info("[inicia] TarefaInfraRepository - inativaTarefa");
 		Query query = new Query();
@@ -46,4 +52,5 @@ public class TarefaInfraRepository implements TarefaRepository {
 		mongoTemplate.updateMulti(query, update, Tarefa.class);
 		log.info("[finaliza] TarefaInfraRepository - inativaTarefa");
 	}
+
 }
