@@ -7,14 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@RestController
-@RequestMapping("/")
 public class ProdudoroApplication {
-	
-	@GetMapping
-	public String getHomeTeste() {
-		return "Produdoro - API Home";
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProdudoroApplication.class, args);
