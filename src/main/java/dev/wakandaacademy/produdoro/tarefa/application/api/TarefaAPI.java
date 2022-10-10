@@ -1,5 +1,6 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +24,7 @@ public interface TarefaAPI {
     @PostMapping("/{idTarefa}/status")
     @ResponseStatus(code = HttpStatus.CREATED)
     void ativaTarefa(@RequestParam UUID idUsuario, @PathVariable UUID idTarefa);
+
+
 }
 

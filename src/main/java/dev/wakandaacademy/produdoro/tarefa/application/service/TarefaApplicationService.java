@@ -40,11 +40,10 @@ public class TarefaApplicationService implements TarefaService {
     public void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa) {
         log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
         usuarioService.buscaUsuarioPorId(idUsuario);
-        //APAGAR (USAR OUTRO)
-////		Tarefa tarefa = tarefaRepository.getTarefaById(idTarefa);
-//		tarefaRepository.inativaTarefa(idUsuario);
-        //tarefa.mudaParaAtiva();
-//		tarefaRepository.salva(tarefa);
+		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+		tarefaRepository.inativaTarefa(idUsuario);
+        tarefa.mudaParaAtiva();
+		tarefaRepository.salva(tarefa);
         log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
     }
 }

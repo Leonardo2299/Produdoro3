@@ -1,17 +1,22 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
+import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
 import dev.wakandaacademy.produdoro.tarefa.application.service.TarefaService;
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaRestController implements TarefaAPI {
-
 	private final TarefaService tarefaService;
 
 
@@ -34,6 +39,6 @@ public class TarefaRestController implements TarefaAPI {
 		log.info("[inicia]  TarefaRestController - ativaTarefa ");
 		tarefaService.statusAtivacaoTarefa(idUsuario, idTarefa);
 		log.info("[finaliza]  TarefaRestController - ativaTarefa");
-
 	}
+
 }
