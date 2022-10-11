@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -21,5 +23,13 @@ public class TarefaApplicationService implements TarefaService {
         Tarefa tarefaCriada = tarefaRepository.salva(new Tarefa(tarefaRequest));
         log.info("[finish] TarefaSpringMongoDBService - criaNovaTarefa");
         return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
+    }
+
+    @Override
+    public void deletaTarefaPorId(UUID idTarefa) {
+        log.info("[start] TarefaApplicationService - deletaTarefaPorId");
+        //log.info("[IdTarefa]" + buscaTarefaPorId(idTarefa));
+        tarefaRepository.deletaTarefaPorId(idTarefa);
+        log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
     }
 }
