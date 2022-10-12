@@ -1,5 +1,6 @@
 package dev.wakandaacademy.produdoro.tarefa.infra;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.dao.DataIntegrityViolationException;
@@ -37,4 +38,24 @@ public class TarefaInfraRepository implements TarefaRepository {
         log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
         return tarefa;
     }
+
+    @Override
+    public List<Tarefa> buscaTarefaOrdenadaAsc(UUID idUsuario) {
+		try {
+			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricao(idUsuario);
+			return tarefas;
+		} catch (APIException e) {
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
+		}
+	}
+
+    @Override
+    public List<Tarefa> buscaTarefaOrdenadaDesc(UUID idUsuario) {
+		try {
+			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricaoDesc(idUsuario);
+			return tarefas;
+		} catch (APIException e) {
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
+		}
+	}
 }

@@ -1,5 +1,6 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -21,6 +22,15 @@ public interface TarefaAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
+    
+    @GetMapping("/ordem-a-z/{idUsuario}")
+   	@ResponseStatus(code = HttpStatus.ACCEPTED)
+   	List<TarefaListResponse> listaTarefasOrdenadasAsc(@PathVariable UUID idUsuario);
+       
+    @GetMapping("/ordem-z-a/{idUsuario}")
+    @ResponseStatus(code = HttpStatus.ACCEPTED)
+    List<TarefaListResponse> listaTarefasOrdenadasDesc(@PathVariable UUID idUsuario);
+    
 
     @GetMapping("/{idTarefa}")
     @ResponseStatus(code = HttpStatus.OK)

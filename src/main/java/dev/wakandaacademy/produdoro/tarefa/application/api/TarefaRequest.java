@@ -1,8 +1,10 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
 import java.util.UUID;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
 import lombok.NonNull;
 import lombok.Value;
 

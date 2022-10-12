@@ -1,5 +1,6 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +19,28 @@ public class TarefaRestController implements TarefaAPI {
 
     @Override
     public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
-        log.info("[inicia]  TarefaRestController - postNovaTarefa  ");
+        log.info("[inicia] TarefaRestController - postNovaTarefa");
         TarefaIdResponse tarefaCriada = tarefaService.criaNovaTarefa(tarefaRequest);
-        log.info("[finaliza]  TarefaRestController - postNovaTarefa");
+        log.info("[finaliza] TarefaRestController - postNovaTarefa");
         return tarefaCriada;
     }
+
+	@Override
+	public List<TarefaListResponse> listaTarefasOrdenadasAsc(UUID idUsuario) {
+		log.info("[inicia] TarefaRestController - ListaTarefasOrdenadasAsc");
+		List<TarefaListResponse> tarefasOrdenadas = tarefaService.ordenaTarefasAsc(idUsuario);
+		log.info("[finaliza] TarefaRestController - ListaTarefasOrdenadasAsc  ");
+		return tarefasOrdenadas;
+	}
+
+	@Override
+	public List<TarefaListResponse> listaTarefasOrdenadasDesc(UUID idUsuario) {
+		log.info("[inicia] TarefaRestController - ListaTarefasOrdenadasDesc");
+		List<TarefaListResponse> tarefasOrdenadas = tarefaService.ordenaTarefasDesc(idUsuario);
+		log.info("[finaliza] TarefaRestController - ListaTarefasOrdenadasDesc");
+		return tarefasOrdenadas;
+	}
+
 
     @Override
     public TarefaDetalhadoResponse detalhaTarefa(UUID idTarefa) {
