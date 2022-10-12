@@ -31,25 +31,6 @@ public class TarefaInfraRepository implements TarefaRepository {
 		return tarefa;
 	}
 
-	public List<Tarefa> buscaTarefaOrdenadaAsc(UUID idUsuario) {
-		try {
-			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricao(idUsuario);
-			return tarefas;
-		} catch (APIException e) {
-			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
-		}
-	}
-
-	@Override
-	public List<Tarefa> buscaTarefaOrdenadaDesc(UUID idUsuario) {
-		try {
-			List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricaoDesc(idUsuario);
-			return tarefas;
-		} catch (APIException e) {
-			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
-		}
-	}
-   
     @Override
     public Tarefa buscaTarefaPorId(UUID idTarefa) {
         log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
