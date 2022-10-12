@@ -49,4 +49,13 @@ public class TarefaInfraRepository implements TarefaRepository {
 			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
 		}
 	}
+   
+    @Override
+    public Tarefa buscaTarefaPorId(UUID idTarefa) {
+        log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+        var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() ->
+                APIException.build(HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+        log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
+        return tarefa;
+    }
 }

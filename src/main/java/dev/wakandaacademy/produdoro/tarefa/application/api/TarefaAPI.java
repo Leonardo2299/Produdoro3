@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,11 +25,19 @@ public interface TarefaAPI {
     
     @GetMapping("/ordem-a-z/{idUsuario}")
    	@ResponseStatus(code = HttpStatus.ACCEPTED)
-   	List<TarefaListResponse> ListaTarefasOrdenadasAsc(@PathVariable UUID idUsuario);
+   	List<TarefaListResponse> listaTarefasOrdenadasAsc(@PathVariable UUID idUsuario);
        
     @GetMapping("/ordem-z-a/{idUsuario}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    List<TarefaListResponse> ListaTarefasOrdenadasDesc(@PathVariable UUID idUsuario);
+    List<TarefaListResponse> listaTarefasOrdenadasDesc(@PathVariable UUID idUsuario);
     
-    
+
+    @GetMapping("/{idTarefa}")
+    @ResponseStatus(code = HttpStatus.OK)
+    TarefaDetalhadoResponse detalhaTarefa(@PathVariable UUID idTarefa);
+
+    @PatchMapping("/{idTarefa}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    void patchEditaTarefa(@PathVariable UUID idTarefa,
+                          @RequestBody @Valid TarefaModificadaRequest tarefaModificadaRequest);
 }
