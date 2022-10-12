@@ -1,12 +1,10 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
-import lombok.NonNull;
-import lombok.Value;
-
-import javax.validation.constraints.Min;
+import java.util.UUID;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.UUID;
+import lombok.NonNull;
+import lombok.Value;
 
 @Value
 public class TarefaRequest {

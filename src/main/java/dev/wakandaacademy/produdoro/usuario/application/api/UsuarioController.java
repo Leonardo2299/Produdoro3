@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
-
 import dev.wakandaacademy.produdoro.usuario.application.service.UsuarioApplicationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
