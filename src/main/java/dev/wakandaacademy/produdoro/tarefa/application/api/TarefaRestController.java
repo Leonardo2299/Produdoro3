@@ -16,6 +16,7 @@ public class TarefaRestController implements TarefaAPI {
 
     private final TarefaService tarefaService;
 
+    @Override
     public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
         log.info("[inicia]  TarefaRestController - postNovaTarefa  ");
         TarefaIdResponse tarefaCriada = tarefaService.criaNovaTarefa(tarefaRequest);
@@ -29,5 +30,12 @@ public class TarefaRestController implements TarefaAPI {
         Tarefa tarefa = tarefaService.detalhaTarefa(idTarefa);
         log.info("[finaliza] TarefaRestController - detalhaTarefa");
         return new TarefaDetalhadoResponse(tarefa);
+    }
+
+    @Override    
+    public void patchEditaTarefa(UUID idTarefa, TarefaModificadaRequest tarefaModificadaRequest) {
+        log.info("[inicia]  TarefaRestController - patchEditaTarefa  ");
+        tarefaService.editaTarefa(idTarefa, tarefaModificadaRequest);
+        log.info("[finaliza]  TarefaRestController - patchEditaTarefa  ");
     }
 }
