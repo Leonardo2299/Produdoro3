@@ -44,3 +44,4 @@ public class Usuario {
 		this.status = status.PAUSA_CURTA;
 	}
 }
+

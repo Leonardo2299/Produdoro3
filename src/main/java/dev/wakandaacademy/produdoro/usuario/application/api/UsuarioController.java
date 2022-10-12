@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
-
 import dev.wakandaacademy.produdoro.usuario.application.service.UsuarioApplicationService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -25,7 +24,7 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - postNovoUsuario");
 		return usuarioCriado;
 	}
-	
+
 	@Override
 	public UsuarioCriadoResponse buscaUsuarioPorId(UUID idUsuario) {
 		log.info("[start] UsuarioController - buscaUsuarioPorId");
@@ -34,6 +33,7 @@ public class UsuarioController implements UsuarioAPI {
 		log.info("[finish] UsuarioController - buscaUsuarioPorId");
 		return buscaUsuario;
 	}
+
 	@Override
 	public void alteraStatusPausaCurta(UUID idUsuario) {
 		log.info("[start] UsuarioController - AlteraStatusPausaCurta");
