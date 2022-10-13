@@ -3,13 +3,13 @@ package dev.wakandaacademy.produdoro.tarefa.domain;
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
+import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaModificadaRequest;
+import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaModificadaRequest;
-import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,8 +33,11 @@ public class Tarefa {
     private UUID idArea;
     @Indexed
     private UUID idProjeto;
+
     private StatusTarefa status = StatusTarefa.A_FAZER;
+
     private StatusAtivacaoTarefa statusAtivacao;
+    
     private int contagemPomodoro;
 
 
@@ -49,7 +52,7 @@ public class Tarefa {
         this.contagemPomodoro = 1;
     }
 
-    public void editada(TarefaModificadaRequest tarefaModificadaRequest) {
+    public void edita(TarefaModificadaRequest tarefaModificadaRequest) {
         this.descricao = tarefaModificadaRequest.getDescricao();
         this.contagemPomodoro = tarefaModificadaRequest.getContagemPomodoro();
     }
@@ -57,4 +60,10 @@ public class Tarefa {
     public void incrementaPomodor() {
 		this.contagemPomodoro+=1;
 	}
+
+	public void mudaParaAtiva() {
+		this.statusAtivacao = StatusAtivacaoTarefa.ATIVA;
+	}
+
 }
+

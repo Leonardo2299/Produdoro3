@@ -3,10 +3,18 @@ package dev.wakandaacademy.produdoro.tarefa.infra;
 import java.util.Optional;
 import java.util.UUID;
 
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import java.util.List;
 
 public interface TarefaSpringMongoDBRepository extends MongoRepository<Tarefa, UUID> {
+	
 	Optional<Tarefa> findByIdTarefaAndIdUsuario(UUID idTarefa,UUID usuario);
+
+    Optional<Tarefa> findByIdTarefa(UUID idTarefa);
+
+	List<Tarefa> findByIdUsuarioOrderByDescricao(UUID idUsuario);
+
+	List<Tarefa> findByIdUsuarioOrderByDescricaoDesc(UUID idUsuario);
 }
