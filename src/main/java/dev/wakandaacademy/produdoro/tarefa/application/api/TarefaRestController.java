@@ -1,21 +1,21 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.web.bind.annotation.RestController;
-
 import dev.wakandaacademy.produdoro.tarefa.application.service.TarefaService;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.UUID;
+
 @RestController
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaRestController implements TarefaAPI {
+	private final TarefaService tarefaService;
 
-    private final TarefaService tarefaService;
 
     @Override
     public TarefaIdResponse postNovaTarefa(TarefaRequest tarefaRequest) {
@@ -56,4 +56,11 @@ public class TarefaRestController implements TarefaAPI {
         tarefaService.editaTarefa(idTarefa, tarefaModificadaRequest);
         log.info("[finaliza]  TarefaRestController - patchEditaTarefa  ");
     }
+
+	@Override
+	public void ativaTarefa(UUID idUsuario, UUID idTarefa) {
+		log.info("[inicia]  TarefaRestController - ativaTarefa ");
+		tarefaService.statusAtivacaoTarefa(idUsuario, idTarefa);
+		log.info("[finaliza]  TarefaRestController - ativaTarefa");
+	}
 }

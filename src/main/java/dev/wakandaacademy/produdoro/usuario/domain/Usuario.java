@@ -41,6 +41,10 @@ public class Usuario {
 	}
 	public void alteraStatusParaFoco() {
 		this.status = StatusUsuario.FOCO;
+	}	
+
+	public void alteraStatusPausaCurta() {
+		this.status = StatusUsuario.PAUSA_CURTA;
 	}
 }
 
