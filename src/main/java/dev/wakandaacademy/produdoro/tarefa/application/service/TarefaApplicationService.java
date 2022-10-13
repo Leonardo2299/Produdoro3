@@ -106,5 +106,6 @@ public class TarefaApplicationService implements TarefaService {
 		if(!usuarioResponse.getEmail().equals(usuario)){
 			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuarios não são iguais!");
 		}		
-	}
+	}  
+	
 }
