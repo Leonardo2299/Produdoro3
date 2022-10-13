@@ -21,4 +21,8 @@ public interface UsuarioAPI {
 	@PatchMapping(value = "/{idUsuario}/foco")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void mudaStatusParaFoco(@PathVariable UUID idUsuario);
+  
+	@PatchMapping(value = "/{idUsuario}/pausa-curta")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	void alteraStatusPausaCurta(@PathVariable UUID idUsuario);
 }
