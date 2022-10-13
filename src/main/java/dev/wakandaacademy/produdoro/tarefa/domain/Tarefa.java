@@ -56,5 +56,10 @@ public class Tarefa {
         this.descricao = tarefaModificadaRequest.getDescricao();
         this.contagemPomodoro = tarefaModificadaRequest.getContagemPomodoro();
     }
+
+	public void mudaParaAtiva() {
+		this.statusAtivacao = StatusAtivacaoTarefa.ATIVA;
+	}
+
 }
 

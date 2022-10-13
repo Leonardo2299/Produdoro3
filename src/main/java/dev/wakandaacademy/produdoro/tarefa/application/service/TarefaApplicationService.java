@@ -9,6 +9,7 @@ import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaModificadaReque
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaRequest;
 import dev.wakandaacademy.produdoro.tarefa.application.repository.TarefaRepository;
 import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
+import dev.wakandaacademy.produdoro.usuario.application.service.UsuarioService;
 import dev.wakandaacademy.produdoro.usuario.application.repository.UsuarioRepository;
 import dev.wakandaacademy.produdoro.usuario.domain.Usuario;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +21,11 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaApplicationService implements TarefaService {
+    
+	private final UsuarioService usuarioService;
 
-    private final TarefaRepository tarefaRepository;
+	private final TarefaRepository tarefaRepository;
+
 	private final UsuarioRepository usuarioRepository;
 
     @Override
@@ -50,8 +54,6 @@ public class TarefaApplicationService implements TarefaService {
 		return TarefaListResponse.converte(listaDeTarefa);
 	}
 		
-	
-	
     @Override
     public Tarefa detalhaTarefa(UUID idTarefa) {
         log.info("[inicia] TarefaService - detalhaTarefa");
@@ -67,5 +69,16 @@ public class TarefaApplicationService implements TarefaService {
         tarefa.edita(tarefaModificadaRequest);
         tarefaRepository.salva(tarefa);
         log.info("[finish] TarefaApplicationService - editaTarefa");
+    }
+
+    @Override
+    public void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa) {
+        log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
+        usuarioService.buscaUsuarioPorId(idUsuario);
+		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+		tarefaRepository.inativaTarefa(idUsuario);
+        tarefa.mudaParaAtiva();
+		tarefaRepository.salva(tarefa);
+        log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
     }
 }

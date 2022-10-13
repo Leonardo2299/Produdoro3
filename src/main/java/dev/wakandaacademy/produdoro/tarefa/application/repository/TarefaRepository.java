@@ -14,4 +14,8 @@ public interface TarefaRepository {
 	List<Tarefa> buscaTarefaOrdenadaDesc(UUID idUsuario);
 	
     Tarefa buscaTarefaPorId(UUID idTarefa);
+
+    void inativaTarefa(UUID idUsuario);
+
+
 }
