@@ -1,13 +1,11 @@
 package dev.wakandaacademy.produdoro.tarefa.application.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import dev.wakandaacademy.produdoro.config.security.service.TokenService;
 import dev.wakandaacademy.produdoro.handler.APIException;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaIdResponse;
 import dev.wakandaacademy.produdoro.tarefa.application.api.TarefaListResponse;
@@ -33,7 +31,6 @@ public class TarefaApplicationService implements TarefaService {
 
 	private final UsuarioRepository usuarioRepository;
 
-	private final TokenService tokenService;
 
 	@Override
 	public TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest) {
@@ -90,15 +87,13 @@ public class TarefaApplicationService implements TarefaService {
 	}
 
 	@Override
-	public void alteraPomodoro(UUID idTarefa, String token) {
-		log.info("[Inicio] - IncrementaApplicationService - alteraCliente");
-		String emailUsuario = tokenService.getUsuario(token).orElseThrow();
-		Optional<String> usuario = tokenService.getUsuarioByBearerToken(token);
+	public void alteraPomodoro(UUID idTarefa, String usuario) {
+		log.info("[Inicio] - TarefaApplicationService - alteraPomodoro");
 		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
-		validaUsuario(tarefa, emailUsuario);
+		validaUsuario(tarefa, usuario);
 		tarefa.incrementaPomodor();
 		tarefaRepository.salva(tarefa);
-		log.info("[Fim] - IncrementaApplicationService - alteraCliente");
+		log.info("[Fim] - TarefaApplicationService - alteraPomodoro");
 	}
 
 	public void validaUsuario(Tarefa tarefa, String usuario) {
