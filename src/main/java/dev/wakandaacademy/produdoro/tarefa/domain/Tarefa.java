@@ -16,7 +16,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Builder
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
@@ -24,42 +23,44 @@ import lombok.NoArgsConstructor;
 @Document(collection = "Tarefa")
 public class Tarefa {
 
-    @Id
-    private UUID idTarefa;
-    @NotBlank
-    private String descricao;
-    @Indexed
-    private UUID idUsuario;
-    @Indexed
-    private UUID idArea;
-    @Indexed
-    private UUID idProjeto;
+	@Id
+	private UUID idTarefa;
+	@NotBlank
+	private String descricao;
+	@Indexed
+	private UUID idUsuario;
+	@Indexed
+	private UUID idArea;
+	@Indexed
+	private UUID idProjeto;
 
-    private StatusTarefa status = StatusTarefa.A_FAZER;
+	private StatusTarefa status = StatusTarefa.A_FAZER;
 
-    private StatusAtivacaoTarefa statusAtivacao;
-    
-    private int contagemPomodoro;
+	private StatusAtivacaoTarefa statusAtivacao;
 
-    public Tarefa(TarefaRequest tarefaRequest) {
-        this.idTarefa = UUID.randomUUID();
-        this.idUsuario = tarefaRequest.getIdUsuario();
-        this.descricao = tarefaRequest.getDescricao();
-        this.idArea = tarefaRequest.getIdArea();
-        this.idProjeto = tarefaRequest.getIdProjeto();
-        this.status = StatusTarefa.A_FAZER;
-        this.statusAtivacao = StatusAtivacaoTarefa.INATIVA;
-        this.contagemPomodoro = 1;
-    }
+	private int contagemPomodoro;
 
-    public void edita(TarefaModificadaRequest tarefaModificadaRequest) {
-        this.descricao = tarefaModificadaRequest.getDescricao();
-        this.contagemPomodoro = tarefaModificadaRequest.getContagemPomodoro();
-    }
+	public Tarefa(TarefaRequest tarefaRequest) {
+		this.idTarefa = UUID.randomUUID();
+		this.idUsuario = tarefaRequest.getIdUsuario();
+		this.descricao = tarefaRequest.getDescricao();
+		this.idArea = tarefaRequest.getIdArea();
+		this.idProjeto = tarefaRequest.getIdProjeto();
+		this.status = StatusTarefa.A_FAZER;
+		this.statusAtivacao = StatusAtivacaoTarefa.INATIVA;
+		this.contagemPomodoro = 1;
+	}
+
+	public void edita(TarefaModificadaRequest tarefaModificadaRequest) {
+		this.descricao = tarefaModificadaRequest.getDescricao();
+		this.contagemPomodoro = tarefaModificadaRequest.getContagemPomodoro();
+	}
 
 	public void mudaParaAtiva() {
 		this.statusAtivacao = StatusAtivacaoTarefa.ATIVA;
 	}
 
+	public void incrementaPomodor() {
+		this.contagemPomodoro += 1;
+	}
 }
-
