@@ -39,4 +39,13 @@ public class Usuario {
 		this.status = StatusUsuario.FOCO;
 		this.configuracao = new ConfiguracaoUsuario(configuracaoPadrao);
 	}
+
+	public void alteraStatusParaFoco() {
+		this.status = StatusUsuario.FOCO;
+	}	
+
+	public void alteraStatusPausaCurta() {
+		this.status = StatusUsuario.PAUSA_CURTA;
+	}
 }
+
