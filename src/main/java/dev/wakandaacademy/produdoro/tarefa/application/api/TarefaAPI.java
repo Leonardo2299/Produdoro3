@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,10 @@ public interface TarefaAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
+
+    @DeleteMapping(value = "/{idTarefa}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    void deleteTarefaPorId(@PathVariable UUID idTarefa);
     
     @GetMapping("/ordem-a-z/{idUsuario}")
    	@ResponseStatus(code = HttpStatus.ACCEPTED)

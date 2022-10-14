@@ -37,6 +37,14 @@ public class TarefaApplicationService implements TarefaService {
         return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
     }
 
+    @Override
+    public void deletaTarefaPorId(UUID idTarefa) {
+        log.info("[start] TarefaApplicationService - deletaTarefaPorId");
+        //log.info("[IdTarefa]" + buscaTarefaPorId(idTarefa));
+        tarefaRepository.deletaTarefaPorId(idTarefa);
+        log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
+    }
+
 	@Override
 	public List<TarefaListResponse> ordenaTarefasAsc(UUID idUsuario) {
 		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefas");

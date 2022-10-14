@@ -7,7 +7,9 @@ import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 
 
 public interface TarefaRepository {
+
     Tarefa salva(Tarefa tarefa);
+    void deletaTarefaPorId(UUID idTarefa);
 
 	List<Tarefa> buscaTarefaOrdenadaAsc(UUID idUsuario);
 
