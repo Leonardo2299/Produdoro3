@@ -40,7 +40,7 @@ public class TarefaApplicationService implements TarefaService {
     @Override
     public void deletaTarefaPorId(UUID idTarefa) {
         log.info("[start] TarefaApplicationService - deletaTarefaPorId");
-        //log.info("[IdTarefa]" + buscaTarefaPorId(idTarefa));
+        detalhaTarefa(idTarefa);
         tarefaRepository.deletaTarefaPorId(idTarefa);
         log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
     }
