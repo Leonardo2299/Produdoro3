@@ -15,4 +15,5 @@ public interface UsuarioApplicationService {
     void alteraStatusPausaCurta(UUID idUsuario);
 
 	void alteraStatusPausaLonga(UUID idUsuario);
+	
 }

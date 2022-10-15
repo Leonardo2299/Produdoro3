@@ -31,4 +31,5 @@ public interface UsuarioAPI {
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void alteraStatusPausaLonga(@PathVariable UUID idUsuario);
 	
+	
 }

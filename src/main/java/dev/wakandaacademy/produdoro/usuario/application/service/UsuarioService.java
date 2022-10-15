@@ -69,4 +69,5 @@ public class UsuarioService implements UsuarioApplicationService {
 		log.info("[finaliza] UsuarioApplicationService - AlteraStatusPausaLonga");
 			
 	}
+	
 }
