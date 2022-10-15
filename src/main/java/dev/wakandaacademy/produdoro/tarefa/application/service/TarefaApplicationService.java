@@ -31,7 +31,6 @@ public class TarefaApplicationService implements TarefaService {
 
 	private final UsuarioRepository usuarioRepository;
 
-
 	@Override
 	public TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest) {
 		log.info("[start] TarefaApplicationService - criaNovaTarefa");
@@ -39,6 +38,14 @@ public class TarefaApplicationService implements TarefaService {
 		log.info("[finish] TarefaApplicationService - criaNovaTarefa");
 		return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
 	}
+
+    @Override
+    public void deletaTarefaPorId(UUID idTarefa) {
+        log.info("[start] TarefaApplicationService - deletaTarefaPorId");
+        detalhaTarefa(idTarefa);
+        tarefaRepository.deletaTarefaPorId(idTarefa);
+        log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
+    }
 
 	@Override
 	public List<TarefaListResponse> ordenaTarefasAsc(UUID idUsuario) {
@@ -102,5 +109,4 @@ public class TarefaApplicationService implements TarefaService {
 			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuarios não são iguais!");
 		}		
 	}  
-	
 }
