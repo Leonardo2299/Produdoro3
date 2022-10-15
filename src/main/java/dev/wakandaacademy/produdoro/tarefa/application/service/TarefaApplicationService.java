@@ -17,6 +17,7 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -34,6 +35,14 @@ public class TarefaApplicationService implements TarefaService {
         Tarefa tarefaCriada = tarefaRepository.salva(new Tarefa(tarefaRequest));
         log.info("[finish] TarefaApplicationService - criaNovaTarefa");
         return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
+    }
+
+    @Override
+    public void deletaTarefaPorId(UUID idTarefa) {
+        log.info("[start] TarefaApplicationService - deletaTarefaPorId");
+        detalhaTarefa(idTarefa);
+        tarefaRepository.deletaTarefaPorId(idTarefa);
+        log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
     }
 
 	@Override

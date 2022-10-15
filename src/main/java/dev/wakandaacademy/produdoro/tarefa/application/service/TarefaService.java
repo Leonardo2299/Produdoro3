@@ -15,6 +15,7 @@ import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 public interface TarefaService {
     
     TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest);
+    void deletaTarefaPorId(UUID idTarefa);
 
 	List<TarefaListResponse> ordenaTarefasAsc(UUID idUsuario);
     
