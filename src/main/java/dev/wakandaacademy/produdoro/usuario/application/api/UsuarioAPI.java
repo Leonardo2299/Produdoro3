@@ -25,4 +25,10 @@ public interface UsuarioAPI {
 	@PatchMapping(value = "/{idUsuario}/pausa-curta")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
 	void alteraStatusPausaCurta(@PathVariable UUID idUsuario);
+	
+
+	@PatchMapping(value = "/{idUsuario}/pausa-longa")
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	void alteraStatusPausaLonga(@PathVariable UUID idUsuario);
+	
 }

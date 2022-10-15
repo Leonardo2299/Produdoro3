@@ -47,5 +47,10 @@ public class Usuario {
 	public void alteraStatusPausaCurta() {
 		this.status = StatusUsuario.PAUSA_CURTA;
 	}
+
+	public void alteraStatusPausaLonga() {
+		this.status = StatusUsuario.PAUSA_LONGA;
+		
+	}
 }
 
