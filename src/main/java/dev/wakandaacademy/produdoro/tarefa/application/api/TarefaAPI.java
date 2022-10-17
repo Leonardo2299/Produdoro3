@@ -17,5 +17,5 @@ public interface TarefaAPI {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    List<TarefaListResponse> listaTarefasPorIdUsuario(@RequestParam("IdUsuario") Optional<String> IdUsuario);
+    List<TarefaUsuarioListResponse> listaTarefasPorIdUsuario(@RequestParam("idUsuario") Optional<String> idUsuario);
 }
