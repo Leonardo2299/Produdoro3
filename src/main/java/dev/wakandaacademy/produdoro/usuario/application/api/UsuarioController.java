@@ -53,6 +53,5 @@ public class UsuarioController implements UsuarioAPI {
 		usuarioAppplicationService.alteraStatusPausaLonga(idUsuario);
 		log.info("[finish] UsuarioController - AlteraStatusPausalonga");
 		
-		
 	}
 }
