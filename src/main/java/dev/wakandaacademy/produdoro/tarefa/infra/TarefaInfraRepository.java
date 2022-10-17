@@ -6,6 +6,10 @@ import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +22,7 @@ import java.util.UUID;
 public class TarefaInfraRepository implements TarefaRepository {
 
     private final TarefaSpringMongoDBRepository tarefaSpringMongoDBRepository;
+    private final MongoTemplate mongoTemplate;
 
     @Override
     public Tarefa salva(Tarefa tarefa) {
@@ -31,6 +36,53 @@ public class TarefaInfraRepository implements TarefaRepository {
     }
 
     @Override
+    public Tarefa buscaTarefaPorId(UUID idTarefa) {
+        log.info("[inicia] TarefaInfraRepository - buscaTarefaPorId");
+        var tarefa = tarefaSpringMongoDBRepository.findById(idTarefa).orElseThrow(() ->
+                APIException.build(HttpStatus.BAD_REQUEST, "tarefa não encontrada"));
+        log.info("[finaliza] TarefaInfraRepository - buscaTarefaPorId");
+        return tarefa;
+    }
+
+    @Override
+    public void inativaTarefa(UUID idUsuario) {
+        log.info("[inicia] TarefaInfraRepository - inativaTarefa");
+        Query query = new Query();
+        query.addCriteria(Criteria.where("idUsuario").is(idUsuario));
+        Update update = new Update();
+        update.set("statusAtivacao", "INATIVA");
+        mongoTemplate.updateMulti(query, update, Tarefa.class);
+        log.info("[finaliza] TarefaInfraRepository - inativaTarefa");
+    }
+
+    @Override
+    public void deletaTarefaPorId(UUID idTarefa) {
+        log.info("[start] TarefaInfraRepository - deletaTarefaPorId");
+        tarefaSpringMongoDBRepository.deleteById(idTarefa);
+        log.info("[finish] TarefaInfraRepository - deletaTarefaPorId");
+    }
+
+    @Override
+    public List<Tarefa> buscaTarefaOrdenadaAsc(UUID idUsuario) {
+        try {
+            List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricao(idUsuario);
+            return tarefas;
+        } catch (APIException e) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
+        }
+    }
+
+    @Override
+    public List<Tarefa> buscaTarefaOrdenadaDesc(UUID idUsuario) {
+        try {
+            List<Tarefa> tarefas = tarefaSpringMongoDBRepository.findByIdUsuarioOrderByDescricaoDesc(idUsuario);
+            return tarefas;
+        } catch (APIException e) {
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Usuario não encontrado", e);
+        }
+    }
+
+    @Override
     public List<Tarefa> buscaTarefaPorIdUsuario(UUID idUsuario) {
         log.info("[inicia] TarefaInfraRepository - buscaTarefaPorIdUsuario");
         var tarefas = tarefaSpringMongoDBRepository.findAllByIdUsuario(idUsuario);
@@ -38,3 +90,5 @@ public class TarefaInfraRepository implements TarefaRepository {
         return tarefas;
     }
 }
+
+
