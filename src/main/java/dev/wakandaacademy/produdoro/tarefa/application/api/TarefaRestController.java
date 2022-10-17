@@ -1,6 +1,7 @@
 package dev.wakandaacademy.produdoro.tarefa.application.api;
 
 import dev.wakandaacademy.produdoro.tarefa.application.service.TarefaService;
+import dev.wakandaacademy.produdoro.tarefa.domain.Tarefa;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +24,10 @@ public class TarefaRestController implements TarefaAPI {
     }
 
     @Override
-    public List<TarefaListResponse> listaTarefasPorIdUsuario(Optional<String> IdUsuario) {
+    public List<TarefaUsuarioListResponse> listaTarefasPorIdUsuario(Optional<String> idUsuario) {
         log.info("[inicia] TarefaRestController - listaTarefasPorIdUsuario");
-        
+        List<Tarefa> listaTarefas = tarefaService.buscaTarefasPorIdUsuario(idUsuario);
         log.info("[finaliza] TarefaRestController - listaTarefasPorIdUsuario");
-        return null;
+        return TarefaUsuarioListResponse.converte(listaTarefas);
     }
 }
