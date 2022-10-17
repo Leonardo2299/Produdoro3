@@ -106,7 +106,7 @@ public class TarefaApplicationService implements TarefaService {
 	public void validaUsuario(Tarefa tarefa, String usuario) {
 		UsuarioCriadoResponse usuarioResponse = usuarioService.buscaUsuarioPorId(tarefa.getIdUsuario());
 		if(!usuarioResponse.getEmail().equals(usuario)){
-			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuarios não são iguais!");
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuário diferente");
 		}		
 	}  
 }
