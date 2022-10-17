@@ -25,6 +25,12 @@ public class TarefaRestController implements TarefaAPI {
         return tarefaCriada;
     }
 
+    @Override
+    public void deleteTarefaPorId(UUID idTarefa) {
+        log.info("[inicia]  TarefaRestController - deleteTarefaPorId");
+        tarefaService.deletaTarefaPorId(idTarefa);
+        log.info("[finaliza]  TarefaRestController - deleteTarefaPorId");
+    }
 	@Override
 	public List<TarefaListResponse> listaTarefasOrdenadasAsc(UUID idUsuario) {
 		log.info("[inicia] TarefaRestController - ListaTarefasOrdenadasAsc");
