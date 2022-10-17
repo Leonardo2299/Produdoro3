@@ -104,6 +104,7 @@ public class TarefaApplicationService implements TarefaService {
         log.info("[Fim] - TarefaApplicationService - alteraPomodoro");
     }
 
+ feature/WP30-24-usuario-visualiza-todas-suas-tarefas
     public void validaUsuario(Tarefa tarefa, String usuario) {
         UsuarioCriadoResponse usuarioResponse = usuarioService.buscaUsuarioPorId(tarefa.getIdUsuario());
         if(!usuarioResponse.getEmail().equals(usuario)){
@@ -124,3 +125,12 @@ public class TarefaApplicationService implements TarefaService {
         return Arrays.asList();
         }
 	}
+
+	public void validaUsuario(Tarefa tarefa, String usuario) {
+		UsuarioCriadoResponse usuarioResponse = usuarioService.buscaUsuarioPorId(tarefa.getIdUsuario());
+		if(!usuarioResponse.getEmail().equals(usuario)){
+			throw APIException.build(HttpStatus.BAD_REQUEST, "Usuário diferente");
+		}		
+	}  
+}
+

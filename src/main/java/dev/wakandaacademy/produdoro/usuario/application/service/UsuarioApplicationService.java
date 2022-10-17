@@ -13,4 +13,7 @@ public interface UsuarioApplicationService {
 	void mudaStatusParaFoco(UUID idUsuario);
 
     void alteraStatusPausaCurta(UUID idUsuario);
+
+	void alteraStatusPausaLonga(UUID idUsuario);
+	
 }

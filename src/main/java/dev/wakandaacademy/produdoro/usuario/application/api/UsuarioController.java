@@ -46,4 +46,12 @@ public class UsuarioController implements UsuarioAPI {
 		usuarioAppplicationService.alteraStatusPausaCurta(idUsuario);
 		log.info("[finish] UsuarioController - AlteraStatusPausaCurta");
 	}
+
+	@Override
+	public void alteraStatusPausaLonga(UUID idUsuario) {
+		log.info("[start] UsuarioController - AlteraStatusPausalonga");
+		usuarioAppplicationService.alteraStatusPausaLonga(idUsuario);
+		log.info("[finish] UsuarioController - AlteraStatusPausalonga");
+		
+	}
 }
