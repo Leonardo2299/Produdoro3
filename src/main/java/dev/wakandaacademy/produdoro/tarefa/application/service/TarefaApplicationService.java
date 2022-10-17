@@ -19,25 +19,26 @@ import dev.wakandaacademy.produdoro.usuario.application.service.UsuarioService;
 import dev.wakandaacademy.produdoro.usuario.domain.Usuario;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
 public class TarefaApplicationService implements TarefaService {
+    private final UsuarioService usuarioService;
 
-	private final UsuarioService usuarioService;
+    private final TarefaRepository tarefaRepository;
 
-	private final TarefaRepository tarefaRepository;
+    private final UsuarioRepository usuarioRepository;
 
-	private final UsuarioRepository usuarioRepository;
-
-	@Override
-	public TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest) {
-		log.info("[start] TarefaApplicationService - criaNovaTarefa");
-		Tarefa tarefaCriada = tarefaRepository.salva(new Tarefa(tarefaRequest));
-		log.info("[finish] TarefaApplicationService - criaNovaTarefa");
-		return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
-	}
+    @Override
+    public TarefaIdResponse criaNovaTarefa(TarefaRequest tarefaRequest) {
+        log.info("[start] TarefaApplicationService - criaNovaTarefa");
+        Tarefa tarefaCriada = tarefaRepository.salva(new Tarefa(tarefaRequest));
+        log.info("[finish] TarefaApplicationService - criaNovaTarefa");
+        return TarefaIdResponse.builder().idTarefa(tarefaCriada.getIdTarefa()).build();
+    }
 
     @Override
     public void deletaTarefaPorId(UUID idTarefa) {
@@ -47,60 +48,82 @@ public class TarefaApplicationService implements TarefaService {
         log.info("[finish] TarefaApplicationService - deletaTarefaPorId");
     }
 
-	@Override
-	public List<TarefaListResponse> ordenaTarefasAsc(UUID idUsuario) {
-		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefas");
-		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
-		List<Tarefa> listaDeTarefas = tarefaRepository.buscaTarefaOrdenadaAsc(usuario.getIdUsuario());
-		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefas");
-		return TarefaListResponse.converte(listaDeTarefas);
-	}
+    @Override
+    public List<TarefaListResponse> ordenaTarefasAsc(UUID idUsuario) {
+        log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefas");
+        Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+        List<Tarefa> listaDeTarefas = tarefaRepository.buscaTarefaOrdenadaAsc(usuario.getIdUsuario());
+        log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefas");
+        return TarefaListResponse.converte(listaDeTarefas);
+    }
 
-	@Override
-	public List<TarefaListResponse> ordenaTarefasDesc(UUID idUsuario) {
-		log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefasDesc");
-		Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
-		List<Tarefa> listaDeTarefa = tarefaRepository.buscaTarefaOrdenadaDesc(usuario.getIdUsuario());
-		log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefasDesc");
-		return TarefaListResponse.converte(listaDeTarefa);
-	}
+    @Override
+    public List<TarefaListResponse> ordenaTarefasDesc(UUID idUsuario) {
+        log.info("[inicia] TarefaSpringMongoDBService - OrdenaTarefasDesc");
+        Usuario usuario = usuarioRepository.buscaUsuarioPorId(idUsuario);
+        List<Tarefa> listaDeTarefa = tarefaRepository.buscaTarefaOrdenadaDesc(usuario.getIdUsuario());
+        log.info("[finaliza] TarefaSpringMongoDBService - OrdenaTarefasDesc");
+        return TarefaListResponse.converte(listaDeTarefa);
+    }
 
-	@Override
-	public Tarefa detalhaTarefa(UUID idTarefa) {
-		log.info("[inicia] TarefaService - detalhaTarefa");
-		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
-		log.info("[finaliza] TarefaService - detalhaTarefa");
-		return tarefa;
-	}
+    @Override
+    public Tarefa detalhaTarefa(UUID idTarefa) {
+        log.info("[inicia] TarefaService - detalhaTarefa");
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+        log.info("[finaliza] TarefaService - detalhaTarefa");
+        return tarefa;
+    }
 
-	@Override
-	public void editaTarefa(UUID idTarefa, TarefaModificadaRequest tarefaModificadaRequest) {
-		log.info("[start] TarefaApplicationService - editaTarefa");
-		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
-		tarefa.edita(tarefaModificadaRequest);
-		tarefaRepository.salva(tarefa);
-		log.info("[finish] TarefaApplicationService - editaTarefa");
-	}
+    @Override
+    public void editaTarefa(UUID idTarefa, TarefaModificadaRequest tarefaModificadaRequest) {
+        log.info("[start] TarefaApplicationService - editaTarefa");
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+        tarefa.edita(tarefaModificadaRequest);
+        tarefaRepository.salva(tarefa);
+        log.info("[finish] TarefaApplicationService - editaTarefa");
+    }
 
-	@Override
-	public void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa) {
-		log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
-		usuarioService.buscaUsuarioPorId(idUsuario);
-		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
-		tarefaRepository.inativaTarefa(idUsuario);
-		tarefa.mudaParaAtiva();
-		tarefaRepository.salva(tarefa);
-		log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
-	}
+    @Override
+    public void statusAtivacaoTarefa(UUID idUsuario, UUID idTarefa) {
+        log.info("[inicia] TarefaApplicationService - statusAtivacaoTarefa");
+        usuarioService.buscaUsuarioPorId(idUsuario);
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+        tarefaRepository.inativaTarefa(idUsuario);
+        tarefa.mudaParaAtiva();
+        tarefaRepository.salva(tarefa);
+        log.info("[finaliza] TarefaApplicationService - statusAtivacaoTarefa");
+    }
 
-	@Override
-	public void alteraPomodoro(UUID idTarefa, String usuario) {
-		log.info("[Inicio] - TarefaApplicationService - alteraPomodoro");
-		Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
-		validaUsuario(tarefa, usuario);
-		tarefa.incrementaPomodor();
-		tarefaRepository.salva(tarefa);
-		log.info("[Fim] - TarefaApplicationService - alteraPomodoro");
+    @Override
+    public void alteraPomodoro(UUID idTarefa, String usuario) {
+        log.info("[Inicio] - TarefaApplicationService - alteraPomodoro");
+        Tarefa tarefa = tarefaRepository.buscaTarefaPorId(idTarefa);
+        validaUsuario(tarefa, usuario);
+        tarefa.incrementaPomodor();
+        tarefaRepository.salva(tarefa);
+        log.info("[Fim] - TarefaApplicationService - alteraPomodoro");
+    }
+
+ feature/WP30-24-usuario-visualiza-todas-suas-tarefas
+    public void validaUsuario(Tarefa tarefa, String usuario) {
+        UsuarioCriadoResponse usuarioResponse = usuarioService.buscaUsuarioPorId(tarefa.getIdUsuario());
+        if(!usuarioResponse.getEmail().equals(usuario)){
+            throw APIException.build(HttpStatus.BAD_REQUEST, "Usuarios não são iguais!");
+        }
+    }
+    @Override
+    public List<Tarefa> buscaTarefasPorIdUsuario(Optional<String> idUsuario) {
+        log.info("[start] TarefaApplicationService - buscaTarefasPorIdUsuario");
+        String id;
+        if (idUsuario.isPresent()) {
+            id = idUsuario.get();
+            UsuarioCriadoResponse usuario = usuarioService.buscaUsuarioPorId(UUID.fromString(id));
+            List<Tarefa> listaDeTarefas = tarefaRepository.buscaTarefaPorIdUsuario(usuario.getIdUsuario());
+            log.info("[finaliza] TarefaApplicationService - buscarTarefasPorIdUsuario");
+            return listaDeTarefas;
+        }
+        return Arrays.asList();
+        }
 	}
 
 	public void validaUsuario(Tarefa tarefa, String usuario) {
@@ -110,3 +133,4 @@ public class TarefaApplicationService implements TarefaService {
 		}		
 	}  
 }
+

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +27,10 @@ public interface TarefaAPI {
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     TarefaIdResponse postNovaTarefa(@RequestBody @Valid TarefaRequest tarefaRequest);
+
+    @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
+    List<TarefaUsuarioListResponse> listaTarefasPorIdUsuario(@RequestParam("idUsuario") Optional<String> idUsuario);
 
     @DeleteMapping(value = "/{idTarefa}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
@@ -51,5 +57,3 @@ public interface TarefaAPI {
     @ResponseStatus(code = HttpStatus.CREATED)
     void ativaTarefa(@RequestParam UUID idUsuario, @PathVariable UUID idTarefa);
 }
-
-
